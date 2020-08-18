@@ -40,7 +40,7 @@ import {
 } from './styles';
 
 interface Params {
-  id: number;
+  foodId: number;
 }
 
 interface Extra {
@@ -73,38 +73,78 @@ const FoodDetails: React.FC = () => {
 
   useEffect(() => {
     async function loadFood(): Promise<void> {
-      // Load a specific food with extras based on routeParams id
+      const response = await api.get(`/foods/${routeParams.foodId}`);
+      const foodPriceFormated = {
+        ...response.data,
+        formattedPrice: formatValue(response.data.price),
+      };
+      setFood(foodPriceFormated);
+      const extrasFormatted = response.data.extras.map((extra: Extra) => ({
+        ...extra,
+        quantity: 0,
+      }));
+      setExtras(extrasFormatted);
     }
-
     loadFood();
   }, [routeParams]);
 
   function handleIncrementExtra(id: number): void {
-    // Increment extra quantity
+    const updateExtras = extras.map(extra => {
+      if (extra.id === id) {
+        const newQuantity = extra.quantity + 1;
+        return { ...extra, quantity: newQuantity };
+      }
+      return { ...extra };
+    });
+    setExtras([...updateExtras]);
   }
 
   function handleDecrementExtra(id: number): void {
-    // Decrement extra quantity
+    const updateExtras = extras.map(extra => {
+      if (extra.id === id && extra.quantity > 0) {
+        const newQuantity = extra.quantity - 1;
+        return { ...extra, quantity: newQuantity };
+      }
+      return { ...extra };
+    });
+    setExtras([...updateExtras]);
   }
 
   function handleIncrementFood(): void {
-    // Increment food quantity
+    setFoodQuantity(state => state + 1);
   }
 
   function handleDecrementFood(): void {
-    // Decrement food quantity
+    setFoodQuantity(state => (state > 1 ? state - 1 : state));
   }
 
   const toggleFavorite = useCallback(() => {
-    // Toggle if food is favorite or not
+    if (isFavorite) {
+      api.delete(`/favorites/${food.id}`);
+    } else {
+      api.post('/favorites', food);
+    }
+    setIsFavorite(!isFavorite);
   }, [isFavorite, food]);
 
   const cartTotal = useMemo(() => {
-    // Calculate cartTotal
+    const extraValue = extras.reduce((acc, cur) => {
+      return acc + cur.value * cur.quantity;
+    }, 0);
+    const foodValue = food.price * foodQuantity;
+    return formatValue(foodValue + extraValue);
   }, [extras, food, foodQuantity]);
 
   async function handleFinishOrder(): Promise<void> {
-    // Finish the order and save on the API
+    const order = {};
+    Object.assign(order, food, {
+      id: undefined,
+      product_id: food.id,
+      formattedValue: cartTotal,
+      extras,
+    });
+    api.post('/orders', order);
+    navigation.navigate('Dashboard');
   }
 
   // Calculate the correct icon name
@@ -201,7 +241,7 @@ const FoodDetails: React.FC = () => {
             </QuantityContainer>
           </PriceButtonContainer>
 
-          <FinishOrderButton onPress={() => handleFinishOrder()}>
+          <FinishOrderButton onPress={handleFinishOrder}>
             <ButtonText>Confirmar pedido</ButtonText>
             <IconContainer>
               <Icon name="check-square" size={24} color="#fff" />
