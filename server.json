@@ -166,6 +166,110 @@
       "product_id": 1,
       "formattedValue": "R$39,80",
       "id": 4
+    },
+    {
+      "name": "Ao molho",
+      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "price": 19.9,
+      "category": 1,
+      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
+      "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
+      "extras": [
+        {
+          "id": 1,
+          "name": "Bacon",
+          "value": 1.5,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "name": "Frango",
+          "value": 2,
+          "quantity": 1
+        }
+      ],
+      "formattedPrice": "R$19,90",
+      "product_id": 1,
+      "formattedValue": "R$44,80",
+      "id": 5
+    },
+    {
+      "name": "Ao molho",
+      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "price": 19.9,
+      "category": 1,
+      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
+      "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
+      "extras": [
+        {
+          "id": 1,
+          "name": "Bacon",
+          "value": 1.5,
+          "quantity": 0
+        },
+        {
+          "id": 2,
+          "name": "Frango",
+          "value": 2,
+          "quantity": 3
+        }
+      ],
+      "formattedPrice": "R$19,90",
+      "product_id": 1,
+      "formattedValue": "R$25,90",
+      "id": 6
+    },
+    {
+      "name": "Ao molho",
+      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "price": 19.9,
+      "category": 1,
+      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
+      "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
+      "formattedPrice": "R$19,90",
+      "product_id": 1,
+      "formattedValue": "R$21,90",
+      "extras": [
+        {
+          "id": 1,
+          "name": "Bacon",
+          "value": 1.5,
+          "quantity": 0
+        },
+        {
+          "id": 2,
+          "name": "Frango",
+          "value": 2,
+          "quantity": 1
+        }
+      ],
+      "id": 7
+    },
+    {
+      "name": "Ao molho",
+      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "price": 19.9,
+      "category": 1,
+      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
+      "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
+      "formattedPrice": "R$19,90",
+      "product_id": 1,
+      "formattedValue": "R$22,90",
+      "extras": [
+        {
+          "id": 1,
+          "name": "Bacon",
+          "value": 1.5,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "name": "Frango",
+          "value": 2,
+          "quantity": 0
+        }
+      ],
+      "id": 8
     }
   ],
   "favorites": [
@@ -177,6 +281,28 @@
       "category": 2,
       "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
       "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/veggie.png"
+    },
+    {
+      "id": 1,
+      "name": "Ao molho",
+      "description": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "price": 19.9,
+      "category": 1,
+      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
+      "thumbnail_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
+      "extras": [
+        {
+          "id": 1,
+          "name": "Bacon",
+          "value": 1.5
+        },
+        {
+          "id": 2,
+          "name": "Frango",
+          "value": 2
+        }
+      ],
+      "formattedPrice": "R$19,90"
     }
   ]
 }

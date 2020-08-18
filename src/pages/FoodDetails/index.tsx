@@ -40,7 +40,7 @@ import {
 } from './styles';
 
 interface Params {
-  foodId: number;
+  id: number;
 }
 
 interface Extra {
@@ -73,7 +73,7 @@ const FoodDetails: React.FC = () => {
 
   useEffect(() => {
     async function loadFood(): Promise<void> {
-      const response = await api.get(`/foods/${routeParams.foodId}`);
+      const response = await api.get(`/foods/${routeParams.id}`);
       const foodPriceFormated = {
         ...response.data,
         formattedPrice: formatValue(response.data.price),
@@ -84,6 +84,10 @@ const FoodDetails: React.FC = () => {
         quantity: 0,
       }));
       setExtras(extrasFormatted);
+      const checkFavorite = await api.get(
+        `/favorites?id=${foodPriceFormated.id}`,
+      );
+      setIsFavorite(checkFavorite.data.length);
     }
     loadFood();
   }, [routeParams]);
@@ -136,15 +140,15 @@ const FoodDetails: React.FC = () => {
   }, [extras, food, foodQuantity]);
 
   async function handleFinishOrder(): Promise<void> {
-    const order = {};
-    Object.assign(order, food, {
+    const order = {
+      ...food,
       id: undefined,
       product_id: food.id,
       formattedValue: cartTotal,
       extras,
-    });
+    };
     api.post('/orders', order);
-    navigation.navigate('Dashboard');
+    navigation.goBack();
   }
 
   // Calculate the correct icon name
